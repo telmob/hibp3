@@ -31,7 +31,7 @@ setup(
     author="ktx",
     author_email='tmcastex@protonmail.com',
     url='https://github.com/khast3x/hibp3',
-    packages=find_packages(include=['hibp3']),
+    packages=find_packages(include=['hibp3, requests']),
     include_package_data=True,
     install_requires=requirements,
     license="BSD license",
