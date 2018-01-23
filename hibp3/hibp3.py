@@ -6,22 +6,34 @@ import time
 
 class Checkemail:
     """
+    :attribute email: Target email
+    :attribute services: List of breached services if target is positive
+    :attribute rate: Throttling rate in seconds
+    :attribute pwned: True is pwned, False if not or unconfirmed
+    :type email: str
+    :type services: List
+    :type rate: float
+    :type pwned: bool
+
     Checks an email address for breaches using the haveibeenpwned.com API
     You can pass target email as initialisation param of the object,
     or by setting the ``email`` attribute
     To query HIBP use the ``.fetch()`` method
     Results can be viewed using `bool` attribute pwned,
     or by using method ``status`` to also view breached services
-    """
-    """
-    :param email: Target email
-    :param services: List of breached services if target is positive
-    :param rate: Throttling rate in seconds
-    :param pwned: True is pwned, False if not or unconfirmed
-    :type email: str
-    :type services: List
-    :type rate: float
-    :type pwned: bool
+    Example::
+            >>> import hibp3
+            >>> t = hibp3.Checkemail("test@example.com")
+            >>> t.fetch()
+            True
+            >>> t.pwned
+            True
+            >>> t.status()
+            test@example.com pwned in 54 breaches
+            ['000webhost', '7k7k', 'Adobe', 'Anti Public Combo List', 'Bitcoin Talk', 'Bitly', 'Bolt', 'BTC-E', 'Coupon Mom / Armor Games', 'Dailymotion', 'diet.com', 'Disqus', 'Dodonew.com', 'Dropbox', 'Elance', 'Evony', 'Exploit.In', 'Funimation', 'Gawker', 'GeekedIn', 'GFAN', 'Heroes of Newerth', 'iMesh', 'Last.fm', 'Lifeboat', 'LinkedIn', 'Little Monsters', 'mail.ru Dump', 'MCBans', 'MPGH', 'mSpy', 'MySpace', 'NetEase', 'Nihonomaru', 'Onliner Spambot', 'OwnedCore', 'Patreon', 'PayAsUGym', 'QIP', 'QuinStreet', 'R2Games', 'River City Media Spam List', 'Staminus', 'Stratfor', 'Trillian', 'tumblr', 'vBulletin', 'VK', 'We Heart It', 'WHMCS', 'Wishbone', 'XSplit', 'Yahoo', 'Zomato']
+
+
+
     """
 
     email = ""
@@ -30,8 +42,6 @@ class Checkemail:
     ssl = True
     server = "haveibeenpwned.com"
     pwned = False
-
-    """A simple hibp python 3 class test"""
 
     def __init__(self, *args):
         """
