@@ -255,8 +255,8 @@ man_pages = [
 #  dir menu entry, description, category)
 texinfo_documents = [
     ('index', 'hibp3',
-     u'hibp3 Documentation',
-     u'ktx',
+     'hibp3 Documentation',
+     'ktx',
      'hibp3',
      'One line description of project.',
      'Miscellaneous'),
