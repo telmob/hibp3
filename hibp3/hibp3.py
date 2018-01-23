@@ -1,3 +1,4 @@
+from __future__ import print_function
 import requests
 import json
 import time
@@ -6,9 +7,11 @@ import time
 class Checkemail:
     """
     Checks an email address for breaches using the haveibeenpwned.com API
-    You can pass target email as initialisation param of the object, or by setting the ``email`` attribute
+    You can pass target email as initialisation param of the object,
+    or by setting the ``email`` attribute
     To query HIBP use the ``.fetch()`` method
-    Results can be viewed using `bool` attribute pwned, or by using method ``status`` to also view breached services
+    Results can be viewed using `bool` attribute pwned,
+    or by using method ``status`` to also view breached services
     """
     """
     :param email: Target email
@@ -32,7 +35,8 @@ class Checkemail:
 
     def __init__(self, *args):
         """
-    Target email to query for HIBP can be set as init param or ``email`` attribute
+    Target email to query for HIBP can be set as init param or ``email``
+    attribute
         Args:
         :param email: target email
         :type email: type str
@@ -60,23 +64,24 @@ class Checkemail:
 
         """
         self.check = requests.get(
-            "https://" + self.server + "/api/v2/breachedaccount/" + self.email + "?includeUnverified=true",
+            "https://" + self.server + "/api/v2/breachedaccount/" +
+            self.email + "?includeUnverified=true",
             verify=self.ssl)
         if str(self.check.status_code) == "404":
             self.check = "Not pwned"
             self.pwned = "False"
             time.sleep(self.rate)
             return False
-        elif str(self.check.status_code) == "200":  # The address has been breached!
+        elif str(self.check.status_code) == "200":
             self.pwned = True
             self._clean()
             time.sleep(self.rate)
             return True
-        elif str(self.check.status_code) == "429":  # Rate limit triggered
+        elif str(self.check.status_code) == "429":
             time.sleep(self.rate)
-            self.fetch()  # try again
+            self.fetch()
         else:
-            time.sleep(self.rate)  # sleep so that we don't trigger the rate limit
+            time.sleep(self.rate)
             return True
 
     def status(self):
@@ -91,7 +96,7 @@ class Checkemail:
         elif (self.check is None) & (self.pwned is False):
             print("Did you run fetch method correctly?")
         elif (self.check is not None) & (self.pwned is True):
-            print("{} is pwned in {} breaches".format(self.email, self.breaches))
+            print("{} pwned in {} breaches".format(self.email, self.breaches))
             print(self.services)
         else:
             print("Something is wrong")

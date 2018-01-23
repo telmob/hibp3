@@ -12,14 +12,15 @@ with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
 requirements = [
-    # TODO: put package requirements here
+        # TODO: put package requirements here
 ]
 
 setup_requirements = [
-    # TODO(khast3x): put setup requirements (distutils extensions, etc.) here
+        # TODO(khast3x): put setup requirements (distutils extensions, etc.) here
 ]
 
 test_requirements = [
+    "requests"
     # TODO: put package test requirements here
 ]
 
@@ -31,7 +32,7 @@ setup(
     author="ktx",
     author_email='tmcastex@protonmail.com',
     url='https://github.com/khast3x/hibp3',
-    packages=find_packages(include=['hibp3, requests']),
+    packages=find_packages(include=['hibp3, requests', 'json', 'time']),
     include_package_data=True,
     install_requires=requirements,
     license="BSD license",
@@ -52,5 +53,5 @@ setup(
     ],
     test_suite='tests',
     tests_require=test_requirements,
-    setup_requires=setup_requirements,
+    setup_requires=setup_requirements
 )
