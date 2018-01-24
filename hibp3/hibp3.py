@@ -6,54 +6,56 @@ import time
 
 class Checkemail:
     """
-    :attribute email: Target email
-    :attribute services: List of breached services if target is positive
-    :attribute rate: Throttling rate in seconds
-    :attribute pwned: True is pwned, False if not or unconfirmed
+    :ivar services: List of breached services if target is positive
+    :ivar rate: Throttling rate in seconds,
+        default is HIBP friendly (1.3s)
+
+    :ivar pwned: True is pwned, False if not or unconfirmed
     :type email: str
     :type services: List
     :type rate: float
     :type pwned: bool
 
-    Checks an email address for breaches using the haveibeenpwned.com API
-    You can pass target email as initialisation param of the object,
-    or by setting the ``email`` attribute
-    To query HIBP use the ``.fetch()`` method
-    Results can be viewed using `bool` attribute pwned,
-    or by using method ``status`` to also view breached services
-    Example::
+    :param email: target email
+    :type email: type str
+
+    * Checks an email address for breaches using the haveibeenpwned.com API
+    * You can pass target email as initialisation para
+        of the object or by setting the ``email`` attribute
+
+    * Results can be viewed using:
+        * `bool` attribute ``pwned``
+        * by using method :func:`status` to also view breached services
+
+    * Example:
             >>> import hibp3
             >>> t = hibp3.Checkemail("test@example.com")
-            >>> t.fetch()
-            True
             >>> t.pwned
             True
             >>> t.status()
             test@example.com pwned in 54 breaches
-            ['000webhost', '7k7k', 'Adobe', 'Anti Public Combo List', 'Bitcoin Talk', 'Bitly', 'Bolt', 'BTC-E', 'Coupon Mom / Armor Games', 'Dailymotion', 'diet.com', 'Disqus', 'Dodonew.com', 'Dropbox', 'Elance', 'Evony', 'Exploit.In', 'Funimation', 'Gawker', 'GeekedIn', 'GFAN', 'Heroes of Newerth', 'iMesh', 'Last.fm', 'Lifeboat', 'LinkedIn', 'Little Monsters', 'mail.ru Dump', 'MCBans', 'MPGH', 'mSpy', 'MySpace', 'NetEase', 'Nihonomaru', 'Onliner Spambot', 'OwnedCore', 'Patreon', 'PayAsUGym', 'QIP', 'QuinStreet', 'R2Games', 'River City Media Spam List', 'Staminus', 'Stratfor', 'Trillian', 'tumblr', 'vBulletin', 'VK', 'We Heart It', 'WHMCS', 'Wishbone', 'XSplit', 'Yahoo', 'Zomato']
+            ['000webhost', '7k7k', 'Adobe', ...]
 
-
+    .. note:: If email is not set during object creation,
+        you must set email and call the :func:`fetch()` method
 
     """
-
-    email = ""
-    services = []
-    rate = 1.3
-    ssl = True
-    server = "haveibeenpwned.com"
-    pwned = False
 
     def __init__(self, *args):
         """
     Target email to query for HIBP can be set as init param or ``email``
     attribute
-        Args:
-        :param email: target email
-        :type email: type str
-        """
 
+        """
         self.email = args[0]
         self.check = None
+        self.services = []
+        self.rate = 1.3
+        self.ssl = True
+        self.server = "haveibeenpwned.com"
+        self.pwned = False
+        if self.email:
+            self.fetch()
 
     def _clean(self):
         """
@@ -66,11 +68,13 @@ class Checkemail:
 
     def fetch(self):
         """
-    Queries the HIBP API
-    Handles recommended throttling
+    * Queries the HIBP API
+    * Handles recommended throttling
         Returns:
           :return: True or False depending on breached or not
           :rtype: bool
+
+    .. note:: This method is run at object creation if `email` param is passed
 
         """
         self.check = requests.get(
@@ -97,8 +101,6 @@ class Checkemail:
     def status(self):
         """
         Prints the result of the query, also shows breached services
-        Requires having run the ``fetch`` method successfully
-
         """
 
         if self.check == "Not pwned":

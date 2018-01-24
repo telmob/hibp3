@@ -11,7 +11,7 @@ from hibp3 import hibp3
 
 class TestHibp3(unittest.TestCase):
     """Tests for `hibp3` package."""
-    def hibptester():
+    def hibptester(self):
         """Tests for hibp API requests"""
         valid = h.Checkemail("test@example.com")
         valid.fetch()

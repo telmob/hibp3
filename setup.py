@@ -12,16 +12,15 @@ with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
 requirements = [
-        # TODO: put package requirements here
+    "requests"
 ]
 
 setup_requirements = [
-        # TODO(khast3x): put setup requirements (distutils extensions, etc.) here
+    "requests"
 ]
 
 test_requirements = [
     "requests"
-    # TODO: put package test requirements here
 ]
 
 setup(

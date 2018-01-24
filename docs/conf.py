@@ -48,6 +48,14 @@ templates_path = ['_templates']
 # The suffix of source filenames.
 source_suffix = '.rst'
 
+# Document __init__ function
+# def skip(app, what, name, obj, skip, options):
+#     if name == "__init__":
+#         return False
+#     return skip
+#
+# def setup(app):
+#     app.connect("autodoc-skip-member", skip)
 # The encoding of source files.
 #source_encoding = 'utf-8-sig'
 
