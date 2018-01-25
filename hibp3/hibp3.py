@@ -36,7 +36,8 @@ class Checkemail:
             test@example.com pwned in 54 breaches
             ['000webhost', '7k7k', 'Adobe', ...]
 
-    .. note:: If email is not set during object creation,
+    .. note::
+        If email is not set during object creation,
         you must set email and call the :func:`fetch()` method
 
     """
@@ -74,7 +75,8 @@ class Checkemail:
           :return: True or False depending on breached or not
           :rtype: bool
 
-    .. note:: This method is run at object creation if `email` param is passed
+    .. note::
+        This method is run at object creation if `email` param is passed
 
         """
         self.check = requests.get(
