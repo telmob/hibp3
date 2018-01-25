@@ -20,7 +20,7 @@ class Checkemail:
     :type email: type str
 
     * Checks an email address for breaches using the haveibeenpwned.com API
-    * You can pass target email as initialisation para
+    * You can pass target email as initialisation param
         of the object or by setting the ``email`` attribute
 
     * Results can be viewed using:

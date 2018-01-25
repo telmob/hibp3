@@ -1,6 +1,8 @@
 Welcome to hibp3's documentation!
 ======================================
 
+Simple python object to check email for a breach using https://haveibeenpwned.com
+
 Contents:
 
 .. toctree::

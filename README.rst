@@ -16,10 +16,11 @@ hibp3
 .. image:: https://pyup.io/repos/github/khast3x/hibp3/shield.svg
      :target: https://pyup.io/repos/github/khast3x/hibp3/
      :alt: Updates
+.. image:: https://media.giphy.com/media/nABJ2vLtUawE0/giphy.gif
+    :alt: Its KISS compliant
 
 
-Python HIBP Class
-
+Simple Python class to check emails using https://haveibeenpwned.com 's (HIBP) API.
 
 * Free software: BSD license
 * Documentation: https://hibp3.readthedocs.io.
@@ -28,13 +29,10 @@ Python HIBP Class
 Features
 --------
 
-* TODO
+* Simple
+* Only uses the `requests` lib
+* Respects the API throttling time, limiting API limits
+* Easy to hack
+* Easy to use
 
-Credits
----------
-
-This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
-
-.. _Cookiecutter: https://github.com/audreyr/cookiecutter
-.. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
 
